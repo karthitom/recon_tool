@@ -1,0 +1,4 @@
+# Python dependencies for the Recon & Asset Monitoring Tool
+# Install with: pip install -r requirements.txt
+
+rich==13.7.1        # Terminal UI — tables, spinners, styled output
