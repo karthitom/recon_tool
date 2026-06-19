@@ -1,7 +1,7 @@
 """
 cli.py — Command-Line Interface Module
 ========================================
-Provides a robust, validated argument parser for the Recon Tool.
+Provides a robust, validated argument parser for LumenRecon.
 
 Usage examples:
     python main.py -t 192.168.1.1
@@ -241,10 +241,12 @@ def _build_parser() -> argparse.ArgumentParser:
         Fully configured parser ready for `.parse_args()`.
     """
     parser = argparse.ArgumentParser(
-        prog="recon_tool",
+        prog="lumenrecon",
         description=(
-            "Recon Tool — Automated Network Reconnaissance & Asset Monitor\n"
-            "For authorized use on permitted targets only."
+            "LumenRecon — Advanced Network Asset Monitor\n"
+            "The Network Illuminator: safely illuminating hidden services and open\n"
+            "ports within authorised networks for defensive posture assessment.\n"
+            "For authorised use on permitted targets only."
         ),
         formatter_class=argparse.RawDescriptionHelpFormatter,
         add_help=True,

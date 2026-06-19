@@ -1,48 +1,45 @@
-# ⚡ NeonRecon
+# 💡 LumenRecon — The Network Illuminator
 
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-22c55e?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-22c55e?style=for-the-badge)
 ![Nmap Required](https://img.shields.io/badge/Requires-Nmap-EF4444?style=for-the-badge)
-![Security](https://img.shields.io/badge/Security-No%20Shell%20Injection-blue?style=for-the-badge)
+![Security](https://img.shields.io/badge/Security-No%20Shell%20Injection-06b6d4?style=for-the-badge)
 
-> **Automated Network Reconnaissance & Asset Monitor** — a modular, terminal-first security tool built for defensive posture assessment. Feed it a target IP or domain; it does the rest.
+> **LumenRecon acts as a light in the dark, safely illuminating hidden services and open ports within authorised networks for defensive posture assessment.**
+>
+> Feed it a target IP or domain. It does the rest.
 
 ---
 
-## What is NeonRecon?
+## What is LumenRecon?
 
-NeonRecon is a safe, focused recon tool that wraps [Nmap](https://nmap.org) with:
+LumenRecon is a modular, terminal-first network reconnaissance tool that wraps [Nmap](https://nmap.org) in a secure, beginner-friendly interface. Where traditional recon tools leave you reading raw command output, LumenRecon illuminates the results — colour-coded, structured, and ready to export.
 
-- **Strict input validation** so nothing unexpected ever reaches the shell
-- **Three scan profiles** — from a 5-second quick sweep to a full 65535-port deep dive
-- **A beautiful terminal UI** built with [Rich](https://github.com/Textualize/rich) — colour-coded tables, live spinners, and a formatted help menu
-- **Structured file exports** — save results as JSON or CSV for further analysis or documentation
-- **A modular, readable codebase** — each concern lives in its own file, making the tool easy to extend
-
-**Built strictly for defensive purposes:** understanding your own attack surface, validating firewall rules, and monitoring asset changes over time.
+Built strictly for **defensive security work**: understanding your own attack surface, validating firewall rules, and monitoring asset changes over time.
 
 ---
 
 ## Features
 
-- ✅ Validates every target against a strict IPv4 / RFC-1123 domain allowlist before touching the network
-- ✅ `subprocess.run(shell=False)` with a `list[str]` command — zero OS command injection surface
-- ✅ Custom exceptions (`NmapNotFoundError`, `ScanTimeoutError`, `ScanError`) for clean, predictable error handling
-- ✅ Rich-powered terminal UI: animated spinner, colour-coded port table, custom help panel
-- ✅ JSON and CSV export to a dedicated `reports/` directory with timestamped filenames
-- ✅ Fully modular: `cli.py` · `scanner.py` · `parser.py` · `reporter.py` · `main.py`
-- ✅ Phase-2 ready: `diff_scans()` and `run_scan_with_metadata()` stubs for asset change detection
+- 💡 **The illuminator model** — strict target validation ensures only permitted, well-formed addresses ever reach the network
+- 🔒 `subprocess.run(shell=False)` with a `list[str]` command — zero OS command injection surface
+- ⚡ **Three scan profiles** — from a 5-second quick sweep to a full 65535-port deep dive
+- 🎨 **Rich terminal UI** — animated spinner, colour-coded port table, and a formatted beginner-friendly help menu
+- 📁 **JSON and CSV export** to a dedicated `reports/` directory with timestamped filenames
+- 🧩 **Fully modular codebase** — `cli.py` · `scanner.py` · `parser.py` · `reporter.py` · `main.py`
+- 🛡️ Custom exceptions (`NmapNotFoundError`, `ScanTimeoutError`, `ScanError`) for clean, predictable error handling
+- 🔭 Phase-2 ready: `diff_scans()` and `run_scan_with_metadata()` stubs for asset change detection
 
 ---
 
 ## Project Structure
 
 ```
-recon_tool/
+lumenrecon/
 ├── main.py          # Orchestrator & entry point
-├── cli.py           # Argument parsing & input validation
-├── scanner.py       # Nmap subprocess execution
+├── cli.py           # Argument parsing & strict input validation
+├── scanner.py       # Nmap subprocess execution (shell=False always)
 ├── parser.py        # Raw nmap output → structured dicts
 ├── reporter.py      # Terminal table rendering & file export
 ├── reports/         # Auto-created — exported JSON/CSV reports land here
@@ -56,7 +53,7 @@ recon_tool/
 
 | Requirement | Version | Notes |
 |---|---|---|
-| Python | 3.10+ | Uses `match`-style type hints |
+| Python | 3.10+ | Uses modern type hint syntax |
 | Nmap | Any modern | Must be on your system `PATH` |
 | rich | 13.7.1 | Installed via `requirements.txt` |
 
@@ -66,7 +63,7 @@ recon_tool/
 
 ### 1 — Install Nmap
 
-NeonRecon calls nmap as an external process. Install it for your OS first.
+LumenRecon calls nmap as an external process. Install it for your OS first.
 
 **Linux (Debian / Ubuntu)**
 ```bash
@@ -92,8 +89,8 @@ nmap --version
 ### 2 — Clone the repository
 
 ```bash
-git clone https://github.com/your-username/neonrecon.git
-cd neonrecon
+git clone https://github.com/your-username/lumenrecon.git
+cd lumenrecon
 ```
 
 ---
@@ -139,7 +136,7 @@ python main.py -t <target> [options]
 | `-s` / `--scan-type` | No | `fast` | Scan profile: `fast` · `service` · `full` |
 | `-o` / `--output` | No | terminal only | Export format: `json` or `csv` |
 | `--timeout` | No | `300` | Max seconds to wait for the scan |
-| `-h` / `--help` | No | — | Show the full help menu |
+| `-h` / `--help` | No | — | Show the full LumenRecon help menu |
 
 ---
 
@@ -149,7 +146,7 @@ python main.py -t <target> [options]
 ```bash
 python main.py -t 192.168.1.1
 ```
-Scans the top 100 most common ports. Results are printed to the terminal. Done in seconds.
+Illuminates the top 100 most common ports. Results are printed to the terminal. Done in seconds.
 
 ---
 
@@ -157,7 +154,7 @@ Scans the top 100 most common ports. Results are printed to the terminal. Done i
 ```bash
 python main.py -t example.com -s service
 ```
-Scans the top 1000 ports and detects service names and version strings (e.g. `Apache httpd 2.4.54`).
+Scans the top 1000 ports and detects service names and version strings (e.g. `Apache httpd 2.4.54`). Shows exactly what software is listening on each port.
 
 ---
 
@@ -165,7 +162,7 @@ Scans the top 1000 ports and detects service names and version strings (e.g. `Ap
 ```bash
 python main.py -t 10.0.0.5 -s full -o json
 ```
-Scans all 65535 ports with version detection. Saves a timestamped report to `reports/scan_10_0_0_5_<timestamp>.json`.
+Illuminates all 65535 ports with version detection. Saves a timestamped report to `reports/scan_10_0_0_5_<timestamp>.json`.
 
 ---
 
@@ -173,7 +170,7 @@ Scans all 65535 ports with version detection. Saves a timestamped report to `rep
 ```bash
 python main.py -t 10.0.0.5 -o csv --timeout 600
 ```
-Quick scan with CSV export. The `--timeout 600` gives slow networks 10 minutes to respond.
+Quick scan with CSV export. The `--timeout 600` gives slow or congested networks 10 minutes to respond.
 
 ---
 
@@ -181,7 +178,7 @@ Quick scan with CSV export. The `--timeout 600` gives slow networks 10 minutes t
 ```bash
 python main.py -h
 ```
-Displays a full Rich-formatted help panel with argument descriptions, examples, and a scan speed guide.
+Displays the full LumenRecon Rich-formatted help panel — argument descriptions, usage examples, and a scan speed guide.
 
 ---
 
@@ -199,7 +196,7 @@ Displays a full Rich-formatted help panel with argument descriptions, examples, 
 
 ## Output Files
 
-When `--output json` or `--output csv` is used, files are written to the `reports/` directory:
+When `--output json` or `--output csv` is used, files are written to the `reports/` directory with UTC-timestamped names:
 
 ```
 reports/
@@ -234,13 +231,14 @@ host, hostname, host_state, port, protocol, state, service, version
 
 ## Security Design
 
-NeonRecon is built with security-first principles throughout:
+LumenRecon is built with security-first principles at every layer:
 
-- **No shell execution.** `subprocess.run()` is always called with `shell=False` and a `list[str]` command. The target string is a single list element — it can never be interpreted as a shell command.
+- **No shell execution.** `subprocess.run()` is always called with `shell=False` and a `list[str]` command. The target string is a single list element — it can never be interpreted as a shell command or inject additional flags.
 - **Strict input allowlisting.** Targets are validated by Python's `ipaddress` module (for IPv4) and a compiled RFC-1123 regex (for domains) before any subprocess call is made.
-- **Blocked special ranges.** Loopback (`127.x`), unspecified (`0.0.0.0`), multicast, and link-local addresses are explicitly rejected.
-- **Output format constrained.** The `--output` flag only accepts the literal strings `json` or `csv` — no free-form strings reach the filesystem layer.
+- **Blocked reserved ranges.** Loopback (`127.x`), unspecified (`0.0.0.0`), multicast, and link-local addresses are explicitly rejected at the CLI layer.
+- **Output format constrained.** The `--output` flag only accepts the literal strings `json` or `csv` — no free-form strings ever reach the filesystem layer.
 - **Minimal nmap surface.** Scan profiles use only port-enumeration flags. No OS detection (`-O`), no scripting engine (`-sC`), no brute-forcing.
+- **extra_flags guard.** Any caller-supplied nmap flags must be a `list[str]` where each element starts with `-`, preventing positional-argument injection through that parameter.
 
 ---
 
@@ -248,7 +246,7 @@ NeonRecon is built with security-first principles throughout:
 
 > **Only scan systems you own or have explicit written authorisation to test.**
 >
-> Unauthorised port scanning may be illegal in your jurisdiction and is a violation of most networks' terms of service. NeonRecon is designed and intended exclusively for:
+> Unauthorised port scanning may be illegal in your jurisdiction and violates most networks' terms of service. LumenRecon is designed and intended exclusively for:
 > - Scanning your own infrastructure
 > - Authorised penetration testing engagements
 > - Defensive security assessments and firewall validation
@@ -262,8 +260,8 @@ NeonRecon is built with security-first principles throughout:
 - [ ] Persistent state storage — save scan history and detect asset changes between runs
 - [ ] `diff_scans()` — highlight newly opened or closed ports since the last scan
 - [ ] IPv6 support
-- [ ] HTML report export
-- [ ] CI/CD integration mode (non-zero exit on newly opened ports)
+- [ ] HTML report export with the LumenRecon branding
+- [ ] CI/CD integration mode (non-zero exit code on newly opened ports)
 
 ---
 

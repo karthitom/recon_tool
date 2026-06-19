@@ -1,7 +1,8 @@
 """
 main.py — Orchestrator & Entry Point
 ======================================
-Single entry point for NeonRecon.  Ties every module together in order:
+Single entry point for LumenRecon — The Network Illuminator.
+Ties every module together in order:
 
     CLI args  →  Scanner  →  Parser  →  Reporter
 
@@ -48,27 +49,35 @@ console = Console(highlight=False)
 
 
 # ---------------------------------------------------------------------------
-# ASCII Banner  — cyberpunk / neon aesthetic
+# ASCII Banner  — sleek cyberpunk aesthetic for LumenRecon
 # ---------------------------------------------------------------------------
 
 _BANNER = r"""
- ███╗   ██╗███████╗ ██████╗ ███╗   ██╗    ██████╗ ███████╗ ██████╗ ██████╗ ███╗   ██╗
- ████╗  ██║██╔════╝██╔═══██╗████╗  ██║    ██╔══██╗██╔════╝██╔════╝██╔═══██╗████╗  ██║
- ██╔██╗ ██║█████╗  ██║   ██║██╔██╗ ██║    ██████╔╝█████╗  ██║     ██║   ██║██╔██╗ ██║
- ██║╚██╗██║██╔══╝  ██║   ██║██║╚██╗██║    ██╔══██╗██╔══╝  ██║     ██║   ██║██║╚██╗██║
- ██║ ╚████║███████╗╚██████╔╝██║ ╚████║    ██║  ██║███████╗╚██████╗╚██████╔╝██║ ╚████║
- ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚═╝  ╚═══╝    ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝
+ ██╗     ██╗   ██╗███╗   ███╗███████╗███╗   ██╗
+ ██║     ██║   ██║████╗ ████║██╔════╝████╗  ██║
+ ██║     ██║   ██║██╔████╔██║█████╗  ██╔██╗ ██║
+ ██║     ██║   ██║██║╚██╔╝██║██╔══╝  ██║╚██╗██║
+ ███████╗╚██████╔╝██║ ╚═╝ ██║███████╗██║ ╚████║
+ ╚══════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝
+  ██████╗ ███████╗ ██████╗ ██████╗ ███╗   ██╗
+  ██╔══██╗██╔════╝██╔════╝██╔═══██╗████╗  ██║
+  ██████╔╝█████╗  ██║     ██║   ██║██╔██╗ ██║
+  ██╔══██╗██╔══╝  ██║     ██║   ██║██║╚██╗██║
+  ██║  ██║███████╗╚██████╗╚██████╔╝██║ ╚████║
+  ╚═╝  ╚═╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝
 """
 
 _TAGLINE = (
-    "⚡  Automated Network Recon & Asset Monitor  ⚡\n"
+    "💡  The Network Illuminator  💡\n"
+    "   [dim]Safely illuminating hidden services and open ports "
+    "within authorised networks.[/dim]\n"
     "   [dim]For authorised use on permitted targets only.[/dim]"
 )
 
 
 def print_banner() -> None:
-    """Render the NeonRecon ASCII banner inside a cyberpunk-style Rich panel."""
-    banner_text = Text(_BANNER, style="bold bright_green", justify="center")
+    """Render the LumenRecon ASCII banner inside a sleek cyberpunk-style Rich panel."""
+    banner_text = Text(_BANNER, style="bold bright_cyan", justify="center")
     tagline_text = Text.from_markup(_TAGLINE, justify="center")
 
     combined = Text.assemble(banner_text, "\n", tagline_text)
@@ -76,7 +85,7 @@ def print_banner() -> None:
     panel = Panel(
         combined,
         box=box.DOUBLE_EDGE,
-        border_style="bright_magenta",
+        border_style="cyan",
         padding=(0, 2),
     )
     console.print(panel)
@@ -98,9 +107,10 @@ def print_help() -> None:
     # ---- Title -----------------------------------------------------------
     console.print(
         Panel(
-            Text("NeonRecon — Help & Usage Guide", style="bold bright_cyan", justify="center"),
+            Text("LumenRecon  ·  The Network Illuminator  ·  Help & Usage Guide",
+                 style="bold bright_cyan", justify="center"),
             box=box.HEAVY,
-            border_style="bright_cyan",
+            border_style="cyan",
             padding=(0, 4),
         )
     )
@@ -109,13 +119,14 @@ def print_help() -> None:
     # ---- What is this tool? ----------------------------------------------
     console.print(
         Panel(
-            "[white]NeonRecon is a safe, automated network reconnaissance tool.\n"
+            "[white]LumenRecon acts as a light in the dark, safely illuminating hidden\n"
+            "services and open ports within authorised networks.\n\n"
             "It uses [bold cyan]Nmap[/bold cyan] to scan a target IP address or domain name and\n"
             "shows you which ports are open, what services are running, and\n"
             "optionally saves the results to a [bold]JSON[/bold] or [bold]CSV[/bold] file.\n\n"
             "[bold yellow]⚠  Only scan systems you own or have explicit written permission to test.[/bold yellow]",
-            title="[bold magenta]What does this tool do?[/bold magenta]",
-            border_style="magenta",
+            title="[bold cyan]💡 What does LumenRecon do?[/bold cyan]",
+            border_style="cyan",
             padding=(1, 3),
         )
     )
@@ -125,10 +136,10 @@ def print_help() -> None:
     args_table = Table(
         box=box.ROUNDED,
         border_style="bright_black",
-        header_style="bold magenta",
+        header_style="bold cyan",
         show_lines=True,
         expand=True,
-        title="[bold magenta]Arguments[/bold magenta]",
+        title="[bold cyan]Arguments[/bold cyan]",
     )
 
     args_table.add_column("Flag",        style="bold cyan",         width=22, no_wrap=True)
@@ -179,10 +190,10 @@ def print_help() -> None:
     ex_table = Table(
         box=box.ROUNDED,
         border_style="bright_black",
-        header_style="bold magenta",
+        header_style="bold cyan",
         show_lines=True,
         expand=True,
-        title="[bold magenta]Usage Examples[/bold magenta]",
+        title="[bold cyan]Usage Examples[/bold cyan]",
     )
 
     ex_table.add_column("Command",     style="bold bright_green", min_width=55)
@@ -216,8 +227,8 @@ def print_help() -> None:
         "and detects [green]service versions[/green].  Takes [yellow]1–5 minutes[/yellow].\n"
         "[bold]full[/bold]    [dim]─────[/dim]  Scans [cyan]all 65535 ports[/cyan].  "
         "Very thorough but can take [red]10–30+ minutes[/red].  Use with a higher --timeout.",
-        title="[bold magenta]Scan Type Speed Guide[/bold magenta]",
-        border_style="magenta",
+        title="[bold cyan]Scan Type Speed Guide[/bold cyan]",
+        border_style="cyan",
         padding=(1, 3),
     )
     console.print(speed_panel)
@@ -226,7 +237,7 @@ def print_help() -> None:
     # ---- Footer ----------------------------------------------------------
     console.print(
         Rule(
-            "[dim]NeonRecon — for authorised use on permitted targets only[/dim]",
+            "[dim]LumenRecon · The Network Illuminator · for authorised use on permitted targets only[/dim]",
             style="bright_black",
         )
     )
@@ -256,8 +267,8 @@ def _print_scan_summary(args) -> None:
     console.print(
         Panel(
             summary,
-            title="[bold magenta]⚡ Scan Configuration[/bold magenta]",
-            border_style="bright_magenta",
+            title="[bold cyan]💡 LumenRecon — Scan Configuration[/bold cyan]",
+            border_style="cyan",
             box=box.ROUNDED,
             padding=(1, 3),
         )
@@ -309,11 +320,11 @@ def main() -> None:
     scan_result: scanner.ScanResult | None = None
 
     with console.status(
-        f"[bold bright_green][ SCANNING ] [cyan]{args.target}[/cyan]  "
+        f"[bold bright_cyan][ LUMENRECON ] [white]{args.target}[/white]  "
         f"[dim]profile=[/dim][white]{args.scan_type}[/white]  "
-        f"[dim]timeout=[/dim][white]{args.timeout}s[/white] …[/bold bright_green]",
+        f"[dim]timeout=[/dim][white]{args.timeout}s[/white] …[/bold bright_cyan]",
         spinner="dots",
-        spinner_style="bold bright_magenta",
+        spinner_style="bold cyan",
     ):
         try:
             scan_result = scanner.run_scan_from_args(args)
